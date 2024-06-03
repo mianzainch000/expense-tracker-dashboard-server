@@ -61,7 +61,6 @@ app.get("/greet", (req, res) => {
   const { name } = req.query;
   res.send({ msg: `Welcome ${name}!` });
 });
-console.log("AAAAA", process.env.MONGODB_URI);
 const mongoUri = process.env.MONGODB_URI;
 
 // mongoose
