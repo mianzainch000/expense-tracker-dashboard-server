@@ -64,13 +64,19 @@ app.get("/greet", (req, res) => {
 console.log("AAAAA", process.env.MONGODB_URI);
 const mongoUri = process.env.MONGODB_URI;
 
+// mongoose
+//   .connect(mongoUri, {
+//     // useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Connected to MongoDB"))
+//   .catch((err) => console.error("Error connecting to MongoDB:", err));
+const mongoose = require("mongoose");
+
 mongoose
-  .connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Error connecting to MongoDB:", err));
+  .connect(mongoUri)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
