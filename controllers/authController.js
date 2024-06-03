@@ -129,7 +129,7 @@ const forgotPassword = async (req, res) => {
     jwt.sign(
       payload,
       "Hello World",
-      { expiresIn: "20m" },
+      { expiresIn: "1h" },
       async (error, token) => {
         if (error) throw error;
         // //user language
@@ -149,7 +149,7 @@ const forgotPassword = async (req, res) => {
 
         // req.i18n.changeLanguage(language_code);
         const html = ForgetPasswordEmail.email(
-          "http://localhost:4000/resetpassword",
+          "https://expense-tracker-dashboard-gamma.vercel.app/resetpassword",
           token,
           req
         );
@@ -183,7 +183,7 @@ const forgotPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   try {
     const token = req.query.token;
-    const { newPassword } = req.body;
+    const { password } = req.body;
     const decoded = await promisify(jwt.verify)(token, "Hello World");
     if (!decoded) {
       return apiResponse(res, 401, false, "Invalid forgot password link");
@@ -198,7 +198,7 @@ const resetPassword = async (req, res) => {
     if (!user) {
       return apiResponse(res, 404, false, "No active user with this email");
     }
-    const encryptPassword = await bcrypt.hash(newPassword, 12);
+    const encryptPassword = await bcrypt.hash(password, 12);
     user.password = encryptPassword;
     await user.save();
     return apiResponse(res, 200, true, "Updated password successfully");
