@@ -132,22 +132,7 @@ const forgotPassword = async (req, res) => {
       { expiresIn: "1h" },
       async (error, token) => {
         if (error) throw error;
-        // //user language
-        // let language_code;
 
-        // if (user?.dataValues?.language) {
-        //   const result = languageWithcode.filter(
-        //     (lang) => lang.name == user?.dataValues?.language
-        //   );
-
-        //   if (result.length > 0) {
-        //     language_code = result[0].code;
-        //   }
-        // } else {
-        //   language_code = "en";
-        // }
-
-        // req.i18n.changeLanguage(language_code);
         const html = ForgetPasswordEmail.email(
           "https://expense-tracker-dashboard-gamma.vercel.app/resetpassword",
           token,
