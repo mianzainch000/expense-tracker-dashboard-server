@@ -15,8 +15,10 @@ const sendMail = async (mailOptions) => {
     service: "gmail",
     port: 587,
     auth: {
-      user: "ranasaif378@gmail.com",
-      pass: "ewfa ahoi gfus ykbj",
+      // user: "ranasaif378@gmail.com",
+      // pass: "ewfa ahoi gfus ykbj",
+      user: "expensetracker637@gmail.com",
+      pass: "cugt ylpe xjrm coqs",
     },
   });
 
